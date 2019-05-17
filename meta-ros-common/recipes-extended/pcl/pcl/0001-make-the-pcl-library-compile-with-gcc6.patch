@@ -1,4 +1,4 @@
-From 31f72094a309ef6845e5c6b0b989237b4b59973f Mon Sep 17 00:00:00 2001
+From 98f862d38ac3873b794259b58c0728216cd6c26f Mon Sep 17 00:00:00 2001
 From: Lukas Bulwahn <lukas.bulwahn@oss.bmw-carit.de>
 Date: Tue, 27 Sep 2016 14:05:22 +0200
 Subject: [PATCH] make the pcl library compile with gcc6
@@ -49,29 +49,47 @@ Upstream-Status: Inappropriate [openembedded specific]
 
 Signed-off-by: Lukas Bulwahn <lukas.bulwahn@gmail.com>
 ---
- CMakeLists.txt                  | 2 +-
+ CMakeLists.txt                  | 6 +++---
  cmake/Modules/FindOpenNI.cmake  | 2 +-
  cmake/Modules/FindOpenNI2.cmake | 2 +-
  cmake/pcl_find_boost.cmake      | 2 +-
  cmake/pcl_targets.cmake         | 2 +-
  test/CMakeLists.txt             | 2 +-
- 6 files changed, 6 insertions(+), 6 deletions(-)
+ 6 files changed, 8 insertions(+), 8 deletions(-)
 
 diff --git a/CMakeLists.txt b/CMakeLists.txt
-index 0b4c1a33d..95e1d31e8 100644
+index f0bc23967..b99d42a6c 100644
 --- a/CMakeLists.txt
 +++ b/CMakeLists.txt
-@@ -277,7 +277,7 @@ endif()
+@@ -303,7 +303,7 @@ find_package(Threads REQUIRED)
  
  # Eigen (required)
- find_package(Eigen REQUIRED)
+ find_package(Eigen 3.1 REQUIRED)
 -include_directories(SYSTEM ${EIGEN_INCLUDE_DIRS})
 +include_directories(${EIGEN_INCLUDE_DIRS})
  
  # FLANN (required)
  if(NOT PCL_SHARED_LIBS OR ((WIN32 AND NOT MINGW) AND NOT PCL_BUILD_WITH_FLANN_DYNAMIC_LINKING_WIN32))
+@@ -348,7 +348,7 @@ if(WITH_PNG)
+   find_package(PNG)
+   if(PNG_FOUND)
+     set(HAVE_PNG ON)
+-    include_directories(SYSTEM "${PNG_INCLUDE_DIR}")
++    include_directories("${PNG_INCLUDE_DIR}")
+   endif()
+ endif()
+ 
+@@ -360,7 +360,7 @@ if(WITH_QHULL)
+   endif()
+   find_package(Qhull)
+   if(QHULL_FOUND)
+-    include_directories(SYSTEM ${QHULL_INCLUDE_DIRS})
++    include_directories(${QHULL_INCLUDE_DIRS})
+   endif()
+ endif()
+ 
 diff --git a/cmake/Modules/FindOpenNI.cmake b/cmake/Modules/FindOpenNI.cmake
-index 2c7b26eea..1e62c359b 100644
+index 09a608113..1e54fd6b8 100644
 --- a/cmake/Modules/FindOpenNI.cmake
 +++ b/cmake/Modules/FindOpenNI.cmake
 @@ -31,7 +31,7 @@ if(NOT WIN32)
@@ -81,10 +99,10 @@ index 2c7b26eea..1e62c359b 100644
 -    include_directories(SYSTEM ${USB_10_INCLUDE_DIR})
 +    include_directories(${USB_10_INCLUDE_DIR})
    endif()
- endif(NOT WIN32)
+ endif()
  
 diff --git a/cmake/Modules/FindOpenNI2.cmake b/cmake/Modules/FindOpenNI2.cmake
-index 037a9a399..cc1855e0f 100644
+index 102633112..fe0ecb84f 100644
 --- a/cmake/Modules/FindOpenNI2.cmake
 +++ b/cmake/Modules/FindOpenNI2.cmake
 @@ -31,7 +31,7 @@ if(NOT WIN32)
@@ -94,43 +112,43 @@ index 037a9a399..cc1855e0f 100644
 -    include_directories(SYSTEM ${USB_10_INCLUDE_DIR})
 +    include_directories(${USB_10_INCLUDE_DIR})
    endif()
- endif(NOT WIN32)
+ endif()
  
 diff --git a/cmake/pcl_find_boost.cmake b/cmake/pcl_find_boost.cmake
-index 6489f3954..0c170116d 100644
+index d1ad5254b..4c7fece20 100644
 --- a/cmake/pcl_find_boost.cmake
 +++ b/cmake/pcl_find_boost.cmake
-@@ -49,6 +49,6 @@ if(Boost_FOUND)
-   # Obtain diagnostic information about Boost's automatic linking outputted 
+@@ -37,6 +37,6 @@ if(Boost_FOUND)
+   # Obtain diagnostic information about Boost's automatic linking outputted
    # during compilation time.
    add_definitions(${Boost_LIB_DIAGNOSTIC_DEFINITIONS})
 -  include_directories(SYSTEM ${Boost_INCLUDE_DIRS})
 +  include_directories(${Boost_INCLUDE_DIRS})
    link_directories(${Boost_LIBRARY_DIRS})
- endif(Boost_FOUND)
+ endif()
 diff --git a/cmake/pcl_targets.cmake b/cmake/pcl_targets.cmake
-index 30696346f..bede67ffa 100644
+index 23fa7589a..09cca6f73 100644
 --- a/cmake/pcl_targets.cmake
 +++ b/cmake/pcl_targets.cmake
-@@ -864,7 +864,7 @@ macro(PCL_ADD_GRABBER_DEPENDENCY _name _description)
-         message(STATUS "${_description}: not building because ${_name} not found")
-       else()
-         set(HAVE_${_name_capitalized} TRUE)
--        include_directories(SYSTEM "${${_name_capitalized}_INCLUDE_DIRS}")
-+        include_directories("${${_name_capitalized}_INCLUDE_DIRS}")
-       endif()
+@@ -835,7 +835,7 @@ macro(PCL_ADD_GRABBER_DEPENDENCY _name _description)
+       message(STATUS "${_description}: not building because ${_name} not found")
+     else()
+       set(HAVE_${_name_capitalized} TRUE)
+-      include_directories(SYSTEM "${${_name_capitalized}_INCLUDE_DIRS}")
++      include_directories("${${_name_capitalized}_INCLUDE_DIRS}")
      endif()
- endmacro(PCL_ADD_GRABBER_DEPENDENCY)
+   endif()
+ endmacro()
 diff --git a/test/CMakeLists.txt b/test/CMakeLists.txt
-index 6a1d55d96..543c279ef 100644
+index ad5492cf8..00bf096c2 100644
 --- a/test/CMakeLists.txt
 +++ b/test/CMakeLists.txt
-@@ -9,7 +9,7 @@ PCL_SUBSYS_DEPEND(build "${SUBSYS_NAME}" DEPS ${SUBSYS_DEPS} OPT_DEPS ${OPT_DEPS
- if(build)
+@@ -11,7 +11,7 @@ if(NOT build)
+ endif()
  
-     find_package(Gtest REQUIRED)
--    include_directories(SYSTEM ${GTEST_INCLUDE_DIRS} ${GTEST_SRC_DIR})
-+    include_directories(${GTEST_INCLUDE_DIRS} ${GTEST_SRC_DIR})
+ find_package(GTestSource REQUIRED)
+-include_directories(SYSTEM ${GTEST_INCLUDE_DIRS} ${GTEST_SRC_DIR})
++include_directories(${GTEST_INCLUDE_DIRS} ${GTEST_SRC_DIR})
  
-     add_library(pcl_gtest STATIC ${GTEST_SRC_DIR}/src/gtest-all.cc)
- 	
+ add_library(pcl_gtest STATIC ${GTEST_SRC_DIR}/src/gtest-all.cc)
+ 

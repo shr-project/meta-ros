@@ -5,8 +5,8 @@ LIC_FILES_CHKSUM = "file://LICENSE.txt;md5=5b8a2a1aa14e6de44b4273134946a34c"
 
 DEPENDS = "boost libflann libeigen qhull"
 
-PV = "1.9.1+git${SRCPV}"
-SRCREV = "72f41b60a539cd1da67d1329b57222290122a0bb"
+PV = "1.10.1+git${SRCPV}"
+SRCREV = "cbed174ba0a0c9ef021015d54d3b60320d808593"
 SRC_URI = "git://github.com/PointCloudLibrary/pcl.git \
     file://0001-make-the-pcl-library-compile-with-gcc6.patch \
 "
@@ -38,9 +38,4 @@ CXXFLAGS += "${@bb.utils.contains("TARGET_CC_ARCH", "-mfpmath=sse", "", "-ffloat
 
 inherit cmake
 
-FILES_${PN}-dev += "${datadir}/${PN}-1.9/*.cmake ${datadir}/${PN}-1.9/Modules/*.cmake"
-
-# The build is really memory hungry (at least with gcc8), even with just -j 8 it triggers OOMK on system with 32GB ram
-# High memory needs mentioned in: https://github.com/PointCloudLibrary/pcl/issues/2284
-# Setting just empty doesn't work, ninja will by default use number of cores available
-PARALLEL_MAKE = "-j4"
+FILES_${PN}-dev += "${datadir}/${BPN}-*/*.cmake ${datadir}/${BPN}-*/Modules/*.cmake"
