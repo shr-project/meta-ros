@@ -6,7 +6,7 @@ SUMMARY = "TurtleBot 3 packages that must be run on the device"
 PACKAGE_ARCH = "${MACHINE_ARCH}"
 
 inherit packagegroup
-inherit ros_distro_${ROS_DISTRO}
+#inherit ros_distro_${ROS_DISTRO}
 
 TURTLEBOT3_PACKAGES_LIDAR ??= " \
     hls-lfcd-lds-driver \

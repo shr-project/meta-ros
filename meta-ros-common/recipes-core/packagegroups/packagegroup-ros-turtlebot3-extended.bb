@@ -3,7 +3,7 @@
 SUMMARY = "All ROS packages for the TurtleBot 3, including those usually run on a remote PC, excepting those requiring a display"
 
 inherit packagegroup
-inherit ros_distro_${ROS_DISTRO}
+#inherit ros_distro_${ROS_DISTRO}
 
 # From http://emanual.robotis.com/docs/en/platform/turtlebot3/slam/#run-slam-nodes. (The others mentioned there are not part of
 # Melodic.)
