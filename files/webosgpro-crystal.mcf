@@ -45,7 +45,7 @@ Layers = [
 ('meta-webos-backports-2.7',  30, 'ssh://gpro.lge.com/webosose/meta-webosose.git',          {}, {}),
 ('meta-webos-backports-2.8',  31, 'ssh://gpro.lge.com/webosose/meta-webosose.git',          {}, {}),
 
-('meta-ros',                  38, 'git://github.com/herb-kuta-lge/meta-ros.git',            {'branch': 'thud-draft-next'}, {}),
+('meta-ros',                  38, 'git://github.com/herb-kuta-lge/meta-ros.git',            {'branch': 'thud-draft-roscon2019-private'}, {}),
 
 ('meta-webos',                40, 'ssh://gpro.lge.com/webosose/meta-webosose.git',          {'branch': 'master', 'commit': 'builds/webosose/master/' + webOSOSEBuildNumber}, {}),
 
