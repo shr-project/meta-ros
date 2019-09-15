@@ -1,0 +1,34 @@
+# /bin/sh
+device_hostname="tb3-01"
+device_ip4_addr="192.168.0.104"
+device_wifi_ssid="TP-Link_ACF6"
+device_wifi_password="XXXXXXXX
+device_ros_distro="melodic"
+device_set_model="export TURTLEBOT3_MODEL=waffle_pi"
+
+if [ $(hostname) != $device_hostname ]; then
+    hostnamectl set-hostname $device_hostname
+fi
+
+sed -i -e '/^# DEVICE-CFG-BEGIN/,/^# DEVICE-CFG-END/ d' /home/root/.profile
+cat <<! >> ~/.profile
+# DEVICE-CFG-BEGIN
+export ROS_HOSTNAME=$device_ip4_addr
+export ROS_MASTER_URI=http://$device_ip4_addr:11311
+if [ -r /opt/ros/$device_ros_distro/setup.sh ]; then
+    source /opt/ros/$device_ros_distro/setup.sh
+else
+    # Handle ROS 2 built with layer version 2.
+    source ros_setup.sh
+fi
+# ROS_HOSTNAME and ROS_MASTER_URI are ROS 1 only.
+if [ "\$ROS_VERSION" != "1" ]; then
+    unset ROS_HOSTNAME
+    unset ROS_MASTER_URI
+fi
+# DEVICE-CFG-END
+!
+
+luna-send -n 1 -f luna://com.webos.service.wifi/setstate '{"state": "enabled" }'
+sleep 1
+luna-send -n 1 -f luna://com.webos.service.wifi/connect '{"ssid": "'$device_wifi_ssid'", "security": {"securityType": "psk", "simpleSecurity": {"passKey": "'$device_wifi_password'"} } }'
