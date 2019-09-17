@@ -450,3 +450,6 @@ PNBLACKLIST[graphviz] ?= ""
 PNBLACKLIST[librsvg] ?= ""
 PNBLACKLIST[libsdl] ?= ""
 PNBLACKLIST[libsdl-image] ?= ""
+
+# Move from base_prefix to prefix for ostree to update it
+ros_prefix = "${prefix}/opt/ros/${ROS_DISTRO}"
