@@ -11,5 +11,6 @@ SRC_URI[sha256sum] = "2821f7fdfe4d2c5916e71f80d0f4029d82785f477a11223e70de2db39a
 inherit setuptools3
 
 DEPENDS += "\
-    ${PYTHON_PN}-cython \
+    ${PYTHON_PN}-cython-native \
+    proj-native \
 "
