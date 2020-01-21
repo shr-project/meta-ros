@@ -3,6 +3,7 @@
 inherit ros_distro
 
 # Place metadata unique to ROS 2 distros here.
+inherit ros_opt_prefix
 
 # https://index.ros.org/doc/ros2/Installation/Linux-Development-Setup/#id3 says LANG must be in the environment. Allow it to be
 # overridden in local.conf . (Can't place in conf/layer.conf as it causes do_patch() to fail when building linux-raspberrypi.)
