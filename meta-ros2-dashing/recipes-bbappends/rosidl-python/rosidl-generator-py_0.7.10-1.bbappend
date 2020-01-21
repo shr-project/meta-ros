@@ -15,5 +15,5 @@ do_install_append() {
     sed -i -e '/target_include_directories([^)]*$/,/)/ { ;
                     s@\$[{]CMAKE_CURRENT_BINARY_DIR[}]/rosidl_generator_py@& $<CMAKE_ROOT>/../../$<PYTHON_INSTALL_DIR>/numpy/core/include@ ;
                     y/<>/{}/ ;
-               }' ${D}${datadir}/${ROS_BPN}/cmake/rosidl_generator_py_generate_interfaces.cmake
+               }' ${D}${ros_datadir}/${ROS_BPN}/cmake/rosidl_generator_py_generate_interfaces.cmake
 }
