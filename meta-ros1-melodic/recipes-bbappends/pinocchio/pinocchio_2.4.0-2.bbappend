@@ -25,3 +25,6 @@ do_configure_append() {
 # Similar issue described here:
 # https://stackoverflow.com/questions/5810101/undefined-boost-python-symbol-boostpythondetailinit-module
 EXTRA_OECMAKE += "-DBUILD_PYTHON_INTERFACE=OFF"
+
+# ERROR: QA Issue: non -dev/-dbg/nativesdk- package contains symlink .so: pinocchio path '/work/core2-64-oe-linux/pinocchio/2.4.0-2-r0/packages-split/pinocchio/usr/lib/libpinocchio.so' [dev-so]
+inherit ros_insane_dev_so
