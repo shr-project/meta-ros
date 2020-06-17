@@ -8,3 +8,8 @@ ROS_BUILDTOOL_DEPENDS += " \
 
 # for rmw-implementation
 BBCLASSEXTEND = "native"
+
+FILESEXTRAPATHS_prepend := "${THISDIR}/${BPN}:"
+SRC_URI += " \
+    file://debug.patch \
+"

@@ -1,0 +1,92 @@
+diff --git a/src/publisher.cpp b/src/publisher.cpp
+index c83ed5c..c1eeaf7 100644
+--- a/src/publisher.cpp
++++ b/src/publisher.cpp
+@@ -66,9 +66,11 @@ rmw_fastrtps_cpp::create_publisher(
+     return nullptr;
+   }
+ 
++  printf("MJ-DEBUG rmw_fastrtps_cpp::create_publisher type_supports '%s'\n", RMW_FASTRTPS_CPP_TYPESUPPORT_C);
+   const rosidl_message_type_support_t * type_support = get_message_typesupport_handle(
+     type_supports, RMW_FASTRTPS_CPP_TYPESUPPORT_C);
+   if (!type_support) {
++    printf("MJ-DEBUG rmw_fastrtps_cpp::create_publisher type_supports '%s'\n", RMW_FASTRTPS_CPP_TYPESUPPORT_CPP);
+     type_support = get_message_typesupport_handle(
+       type_supports, RMW_FASTRTPS_CPP_TYPESUPPORT_CPP);
+     if (!type_support) {
+diff --git a/src/rmw_client.cpp b/src/rmw_client.cpp
+index 6d2d534..9a7ad4c 100644
+--- a/src/rmw_client.cpp
++++ b/src/rmw_client.cpp
+@@ -77,9 +77,11 @@ rmw_create_client(
+     return nullptr;
+   }
+ 
++  printf("MJ-DEBUG rmw_fastrtps_cpp::create_client type_supports '%s'\n", RMW_FASTRTPS_CPP_TYPESUPPORT_C);
+   const rosidl_service_type_support_t * type_support = get_service_typesupport_handle(
+     type_supports, RMW_FASTRTPS_CPP_TYPESUPPORT_C);
+   if (!type_support) {
++    printf("MJ-DEBUG rmw_fastrtps_cpp::create_client type_supports '%s'\n", RMW_FASTRTPS_CPP_TYPESUPPORT_CPP);
+     type_support = get_service_typesupport_handle(
+       type_supports, RMW_FASTRTPS_CPP_TYPESUPPORT_CPP);
+     if (!type_support) {
+diff --git a/src/rmw_serialize.cpp b/src/rmw_serialize.cpp
+index 76c34e0..07c587b 100644
+--- a/src/rmw_serialize.cpp
++++ b/src/rmw_serialize.cpp
+@@ -28,9 +28,11 @@ rmw_serialize(
+   const rosidl_message_type_support_t * type_support,
+   rmw_serialized_message_t * serialized_message)
+ {
++  printf("MJ-DEBUG rmw_fastrtps_cpp::rmw_serialize type_supports '%s'\n", RMW_FASTRTPS_CPP_TYPESUPPORT_C);
+   const rosidl_message_type_support_t * ts = get_message_typesupport_handle(
+     type_support, RMW_FASTRTPS_CPP_TYPESUPPORT_C);
+   if (!ts) {
++    printf("MJ-DEBUG rmw_fastrtps_cpp::rmw_serialize type_supports '%s'\n", RMW_FASTRTPS_CPP_TYPESUPPORT_CPP);
+     ts = get_message_typesupport_handle(
+       type_support, RMW_FASTRTPS_CPP_TYPESUPPORT_CPP);
+     if (!ts) {
+@@ -67,9 +69,11 @@ rmw_deserialize(
+   const rosidl_message_type_support_t * type_support,
+   void * ros_message)
+ {
++  printf("MJ-DEBUG rmw_fastrtps_cpp::rmw_deserialize type_supports '%s'\n", RMW_FASTRTPS_CPP_TYPESUPPORT_C);
+   const rosidl_message_type_support_t * ts = get_message_typesupport_handle(
+     type_support, RMW_FASTRTPS_CPP_TYPESUPPORT_C);
+   if (!ts) {
++    printf("MJ-DEBUG rmw_fastrtps_cpp::rmw_deserialize type_supports '%s'\n", RMW_FASTRTPS_CPP_TYPESUPPORT_CPP);
+     ts = get_message_typesupport_handle(
+       type_support, RMW_FASTRTPS_CPP_TYPESUPPORT_CPP);
+     if (!ts) {
+diff --git a/src/rmw_service.cpp b/src/rmw_service.cpp
+index e1dbe4e..2d5b71f 100644
+--- a/src/rmw_service.cpp
++++ b/src/rmw_service.cpp
+@@ -89,9 +89,11 @@ rmw_create_service(
+     return nullptr;
+   }
+ 
++  printf("MJ-DEBUG rmw_fastrtps_cpp::create_service type_supports '%s'\n", RMW_FASTRTPS_CPP_TYPESUPPORT_C);
+   const rosidl_service_type_support_t * type_support = get_service_typesupport_handle(
+     type_supports, RMW_FASTRTPS_CPP_TYPESUPPORT_C);
+   if (!type_support) {
++    printf("MJ-DEBUG rmw_fastrtps_cpp::create_service type_supports '%s'\n", RMW_FASTRTPS_CPP_TYPESUPPORT_CPP);
+     type_support = get_service_typesupport_handle(
+       type_supports, RMW_FASTRTPS_CPP_TYPESUPPORT_CPP);
+     if (!type_support) {
+diff --git a/src/subscription.cpp b/src/subscription.cpp
+index 6e11224..c886524 100644
+--- a/src/subscription.cpp
++++ b/src/subscription.cpp
+@@ -76,9 +76,11 @@ create_subscription(
+     RMW_SET_ERROR_MSG("participant handle is null");
+     return nullptr;
+   }
++  printf("MJ-DEBUG rmw_fastrtps_cpp::create_subscription type_supports '%s'\n", RMW_FASTRTPS_CPP_TYPESUPPORT_C);
+   const rosidl_message_type_support_t * type_support = get_message_typesupport_handle(
+     type_supports, RMW_FASTRTPS_CPP_TYPESUPPORT_C);
+   if (!type_support) {
++    printf("MJ-DEBUG rmw_fastrtps_cpp::create_subscription type_supports '%s'\n", RMW_FASTRTPS_CPP_TYPESUPPORT_CPP);
+     type_support = get_message_typesupport_handle(
+       type_supports, RMW_FASTRTPS_CPP_TYPESUPPORT_CPP);
+     if (!type_support) {
