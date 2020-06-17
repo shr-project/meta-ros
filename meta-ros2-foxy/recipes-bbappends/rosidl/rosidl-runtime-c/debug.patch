@@ -1,0 +1,12 @@
+diff --git a/src/message_type_support.c b/src/message_type_support.c
+index 439e332..1583b1c 100644
+--- a/src/message_type_support.c
++++ b/src/message_type_support.c
+@@ -34,6 +34,7 @@ const rosidl_message_type_support_t * get_message_typesupport_handle_function(
+   assert(handle);
+   assert(handle->typesupport_identifier);
+   assert(identifier);
++  printf("MJ-DEBUG get_message_typesupport_handle_function id in handle '%s', id '%s'\n", handle->typesupport_identifier, identifier);
+   if (strcmp(handle->typesupport_identifier, identifier) == 0) {
+     return handle;
+   }

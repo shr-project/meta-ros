@@ -1,0 +1,26 @@
+diff --git a/src/rmw_node.cpp b/src/rmw_node.cpp
+index fe64263..7038e9c 100644
+--- a/src/rmw_node.cpp
++++ b/src/rmw_node.cpp
+@@ -1438,18 +1438,21 @@ static const rosidl_message_type_support_t * get_typesupport(
+   const rosidl_message_type_support_t * type_supports)
+ {
+   const rosidl_message_type_support_t * ts;
++  printf("MJ-DEBUG rmw-cyclonedds-cpp get_typesupport '%s'\n", rosidl_typesupport_introspection_c__identifier);
+   if ((ts =
+     get_message_typesupport_handle(
+       type_supports, rosidl_typesupport_introspection_c__identifier)) != nullptr)
+   {
+     return ts;
+   } else {
++    printf("MJ-DEBUG rmw-cyclonedds-cpp get_typesupport '%s'\n", rosidl_typesupport_introspection_cpp::typesupport_identifier);
+     if ((ts =
+       get_message_typesupport_handle(
+         type_supports, rosidl_typesupport_introspection_cpp::typesupport_identifier)) != nullptr)
+     {
+       return ts;
+     } else {
++      printf("MJ-DEBUG rmw-cyclonedds-cpp get_typesupport failed\n");
+       RMW_SET_ERROR_MSG("type support not from this implementation");
+       return nullptr;
+     }
