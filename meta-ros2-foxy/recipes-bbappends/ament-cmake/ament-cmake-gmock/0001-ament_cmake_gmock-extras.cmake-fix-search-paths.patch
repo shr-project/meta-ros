@@ -1,0 +1,32 @@
+From 29e35fc456789159a7d175b208727977edd6add7 Mon Sep 17 00:00:00 2001
+From: Martin Jansa <martin.jansa@lge.com>
+Date: Tue, 23 Jun 2020 10:57:33 -0700
+Subject: [PATCH] ament_cmake_gmock-extras.cmake: fix search paths
+
+* append to _search_path_* variables instead of overwritting whatever $ENV{GMOCK_DIR} resoled into
+
+Signed-off-by: Martin Jansa <martin.jansa@lge.com>
+---
+ ament_cmake_gmock-extras.cmake | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+
+diff --git a/ament_cmake_gmock-extras.cmake b/ament_cmake_gmock-extras.cmake
+index 878e8ffb..f007596d 100644
+--- a/ament_cmake_gmock-extras.cmake
++++ b/ament_cmake_gmock-extras.cmake
+@@ -31,12 +31,12 @@ macro(_ament_cmake_gmock_find_gmock)
+       # option() consider environment variable to find gmock
+       if(NOT $ENV{GMOCK_DIR} STREQUAL "")
+         list(APPEND _search_path_include "$ENV{GMOCK_DIR}/include/gmock")
+-        list(APPEND _search_path_src "$ENV{GMOCK_DIR}/src")
++        list(APPEND _search_path_src "$ENV{GMOCK_DIR}/src/gmock/src")
+       endif()
+ 
+       # check to system installed path (i.e. on Ubuntu)
+-      set(_search_path_include "/usr/include/gmock")
+-      set(_search_path_src "/usr/src/gmock/src")
++      list(APPEND _search_path_include "/usr/include/gmock")
++      list(APPEND _search_path_src "/usr/src/gmock/src")
+ 
+       # check gmock_vendor path, prefer this version over a system installed
+       if(gmock_vendor_FOUND AND gmock_vendor_BASE_DIR)

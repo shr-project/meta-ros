@@ -21,20 +21,53 @@ require conf/ros-distro/include/foxy/ros-distro-preferred-providers.inc
 # Since superflore doesn't know when it's generating a recipe that it will be for a build tool, it can't know that what's in
 # ROS_EXEC_DEPEND are also build tools. Manually add them here.
 ROS_SUPERFLORE_GENERATED_BUILDTOOLS += " \
+    action-msgs-native \
+    ament-cmake-copyright-native \
+    ament-cmake-cppcheck-native \
+    ament-cmake-cpplint-native \
+    ament-cmake-flake8-native \
+    ament-cmake-lint-cmake-native \
+    ament-cmake-pep257-native \
+    ament-cmake-uncrustify-native \
+    ament-cmake-xmllint-native \
     ament-lint-native \
+    ament-lint-auto-native \
+    ament-lint-common-native \
+    builtin-interfaces-native \
+    composition-interfaces-native \
     domain-coordinator-native \
     foonathan-memory-vendor-native \
+    launch-native \
+    launch-ros-native \
+    launch-testing-ros-native \
+    lifecycle-msgs-native \
+    osrf-pycommon-native \
+    osrf-testing-tools-cpp-native \
+    rclpy-native \
     rcpputils-native \
     rmw-dds-common-native \
     rmw-fastrtps-cpp-native \
     rmw-fastrtps-shared-cpp-native \
     rmw-native \
+    rcl-action-native \
+    rcl-interfaces-native \
+    rcl-logging-spdlog-native \
+    rcl-native \
+    rcl-yaml-param-parser-native \
+    ros2cli-native \
+    rosgraph-msgs-native \
     rosidl-adapter-native \
     rosidl-default-runtime-native \
     rosidl-parser-native \
     rosidl-typesupport-fastrtps-c-native \
     rpyutils-native \
+    rmw-implementation-native \
+    std-msgs-native \
+    test-interface-files-native \
+    test-msgs-native \
+    tracetools-native \
     uncrustify-vendor-native \
+    unique-identifier-msgs-native \
 "
 
 # alternative not yet supported implementation for fastrtps
@@ -43,6 +76,8 @@ ROS_WORLD_SKIP_GROUPS += "connext"
 ROS_WORLD_SKIP_GROUPS += "opensplice"
 # alternative not yet supported implementation for fastrtps, there is no recipe for gurumdds-2.6
 ROS_WORLD_SKIP_GROUPS += "gurumdds"
+# alternative not yet supported implementation for fastrtps
+ROS_WORLD_SKIP_GROUPS += "cyclonedds"
 # Can't build these until we figure out how to build clang-format, clang-tidy without building all of clang.
 ROS_WORLD_SKIP_GROUPS += "clang"
 # recipes depending on turtlebot3 specific recipes which weren't ported to eloquent yet

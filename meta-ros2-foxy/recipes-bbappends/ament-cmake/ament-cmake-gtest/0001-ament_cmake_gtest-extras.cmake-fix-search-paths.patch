@@ -1,0 +1,32 @@
+From d0adfb00906ea3ed0274d51d78edc28d5938c163 Mon Sep 17 00:00:00 2001
+From: Martin Jansa <martin.jansa@lge.com>
+Date: Tue, 23 Jun 2020 10:57:33 -0700
+Subject: [PATCH] ament_cmake_gtest-extras.cmake: fix search paths
+
+* append to _search_path_* variables instead of overwritting whatever $ENV{GTEST_DIR} resoled into
+
+Signed-off-by: Martin Jansa <martin.jansa@lge.com>
+---
+ ament_cmake_gtest-extras.cmake | 7 +++----
+ 1 file changed, 3 insertions(+), 4 deletions(-)
+
+diff --git a/ament_cmake_gtest-extras.cmake b/ament_cmake_gtest-extras.cmake
+index 6b8d3ab1..39bb440b 100644
+--- a/ament_cmake_gtest-extras.cmake
++++ b/ament_cmake_gtest-extras.cmake
+@@ -30,12 +30,11 @@ macro(_ament_cmake_gtest_find_gtest)
+       # option() consider environment variable to find gtest
+       if(NOT $ENV{GTEST_DIR} STREQUAL "")
+         list(APPEND _search_path_include "$ENV{GTEST_DIR}/include/gtest")
+-        list(APPEND _search_path_src "$ENV{GTEST_DIR}/src")
++        list(APPEND _search_path_src "$ENV{GTEST_DIR}/src/gtest/src")
+       endif()
+-
+       # check to system installed path (i.e. on Ubuntu)
+-      set(_search_path_include "/usr/include/gtest")
+-      set(_search_path_src "/usr/src/gtest/src")
++      list(APPEND _search_path_include "/usr/include/gtest")
++      list(APPEND _search_path_src "/usr/src/gtest/src")
+ 
+       # check gtest_vendor path, prefer this version over a system installed
+       find_package(gtest_vendor QUIET)

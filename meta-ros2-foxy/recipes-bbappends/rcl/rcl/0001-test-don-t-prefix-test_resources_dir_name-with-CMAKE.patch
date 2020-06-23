@@ -1,0 +1,61 @@
+From 0c7330cf542819137afda54932583f2713e976c6 Mon Sep 17 00:00:00 2001
+From: Martin Jansa <martin.jansa@lge.com>
+Date: Wed, 24 Jun 2020 04:01:07 -0700
+Subject: [PATCH] test: don't prefix test_resources_dir_name with
+ CMAKE_CURRENT_BINARY_DIR
+
+ERROR: rcl-1.1.5-1-r0 do_package: QA Issue: rcl: Files/directories were installed but not shipped in any package:
+  /jenkins
+  /jenkins/mjansa
+  /jenkins/mjansa/build
+  /jenkins/mjansa/build/ros
+  /jenkins/mjansa/build/ros/ros2-foxy-gatesgarth
+  /jenkins/mjansa/build/ros/ros2-foxy-gatesgarth/tmp-glibc
+  /jenkins/mjansa/build/ros/ros2-foxy-gatesgarth/tmp-glibc/work
+  /jenkins/mjansa/build/ros/ros2-foxy-gatesgarth/tmp-glibc/work/core2-64-oe-linux
+  /jenkins/mjansa/build/ros/ros2-foxy-gatesgarth/tmp-glibc/work/core2-64-oe-linux/rcl
+  /jenkins/mjansa/build/ros/ros2-foxy-gatesgarth/tmp-glibc/work/core2-64-oe-linux/rcl/1.1.5-1-r0
+  /jenkins/mjansa/build/ros/ros2-foxy-gatesgarth/tmp-glibc/work/core2-64-oe-linux/rcl/1.1.5-1-r0/build
+  /jenkins/mjansa/build/ros/ros2-foxy-gatesgarth/tmp-glibc/work/core2-64-oe-linux/rcl/1.1.5-1-r0/build/test
+  /jenkins/mjansa/build/ros/ros2-foxy-gatesgarth/tmp-glibc/work/core2-64-oe-linux/rcl/1.1.5-1-r0/build/test/resources
+  /jenkins/mjansa/build/ros/ros2-foxy-gatesgarth/tmp-glibc/work/core2-64-oe-linux/rcl/1.1.5-1-r0/build/test/resources/test_arguments
+  /jenkins/mjansa/build/ros/ros2-foxy-gatesgarth/tmp-glibc/work/core2-64-oe-linux/rcl/1.1.5-1-r0/build/test/resources/test_security_directory
+  /jenkins/mjansa/build/ros/ros2-foxy-gatesgarth/tmp-glibc/work/core2-64-oe-linux/rcl/1.1.5-1-r0/build/test/resources/test_arguments/test_parameters.1.yaml
+  /jenkins/mjansa/build/ros/ros2-foxy-gatesgarth/tmp-glibc/work/core2-64-oe-linux/rcl/1.1.5-1-r0/build/test/resources/test_arguments/test_parameters.2.yaml
+  /jenkins/mjansa/build/ros/ros2-foxy-gatesgarth/tmp-glibc/work/core2-64-oe-linux/rcl/1.1.5-1-r0/build/test/resources/test_security_directory/enclaves
+  /jenkins/mjansa/build/ros/ros2-foxy-gatesgarth/tmp-glibc/work/core2-64-oe-linux/rcl/1.1.5-1-r0/build/test/resources/test_security_directory/enclaves/group1
+  /jenkins/mjansa/build/ros/ros2-foxy-gatesgarth/tmp-glibc/work/core2-64-oe-linux/rcl/1.1.5-1-r0/build/test/resources/test_security_directory/enclaves/dummy_enclave
+  /jenkins/mjansa/build/ros/ros2-foxy-gatesgarth/tmp-glibc/work/core2-64-oe-linux/rcl/1.1.5-1-r0/build/test/resources/test_security_directory/enclaves/group1/dummy_enclave
+  /jenkins/mjansa/build/ros/ros2-foxy-gatesgarth/tmp-glibc/work/core2-64-oe-linux/rcl/1.1.5-1-r0/build/test/resources/test_security_directory/enclaves/group1/dummy_enclave/.gitkeep
+  /jenkins/mjansa/build/ros/ros2-foxy-gatesgarth/tmp-glibc/work/core2-64-oe-linux/rcl/1.1.5-1-r0/build/test/resources/test_security_directory/enclaves/dummy_enclave/.gitkeep
+Please set FILES such that these items are packaged. Alternatively if they are unneeded, avoid installing them or delete them within do_install.
+rcl: 23 installed and not shipped files. [installed-vs-shipped]
+ERROR: rcl-1.1.5-1-r0 do_package: Fatal QA errors found, failing task.
+ERROR: Logfile of failure stored in: /jenkins/mjansa/build/ros/ros2-foxy-gatesgarth/tmp-glibc/work/core2-64-oe-linux/rcl/1.1.5-1-r0/temp/log.do_package.19792
+ERROR: Task (/jenkins/mjansa/build/ros/ros2-foxy-gatesgarth/meta-ros/meta-ros2-foxy/generated-recipes/rcl/rcl_1.1.5-1.bb:do_package) failed with exit code '1'
+NOTE: Tasks Summary: Attempted 3051 tasks of which 3048 didn't need to be rerun and 1 failed.
+
+Signed-off-by: Martin Jansa <martin.jansa@lge.com>
+---
+ test/CMakeLists.txt | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/test/CMakeLists.txt b/test/CMakeLists.txt
+index 407bbc0..491e3d5 100644
+--- a/test/CMakeLists.txt
++++ b/test/CMakeLists.txt
+@@ -17,7 +17,7 @@ include(cmake/rcl_add_custom_launch_test.cmake)
+ 
+ set(extra_lib_dirs "${rcl_lib_dir}")
+ set(test_resources_dir_name "resources")
+-add_definitions(-DTEST_RESOURCES_DIRECTORY="${CMAKE_CURRENT_BINARY_DIR}/${test_resources_dir_name}")
++add_definitions(-DTEST_RESOURCES_DIRECTORY="${test_resources_dir_name}")
+ 
+ # finding gtest once in the highest scope
+ # prevents finding it repeatedly in each local scope
+@@ -354,4 +354,4 @@ rcl_add_custom_gtest(test_security
+ 
+ # Install test resources
+ install(DIRECTORY ${test_resources_dir_name}
+-        DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
++        DESTINATION test)
