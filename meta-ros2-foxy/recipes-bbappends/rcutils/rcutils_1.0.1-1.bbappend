@@ -9,3 +9,8 @@ export GMOCK_DIR = "${STAGING_EXECPREFIXDIR}"
 
 DEPENDS += "python-cmake-module"
 inherit python3native
+
+FILESEXTRAPATHS_prepend := "${THISDIR}/${BPN}:"
+SRC_URI += " \
+    file://debug.patch \
+"
