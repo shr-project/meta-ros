@@ -12,7 +12,7 @@ PYTHON_SOABI_ARCH_SUFFIX:arm = ""
 PYTHON_SOABI_ARCH_i686 = "i386-${TARGET_OS}"
 PYTHON_SOABI = "cpython-${@d.getVar('PYTHON_BASEVERSION').replace('.', '')}${PYTHON_ABI}-${PYTHON_SOABI_ARCH}${PYTHON_SOABI_ARCH_SUFFIX}"
 
-EXTRA_OECMAKE:append = " -DBUILD_TESTING=OFF"
+EXTRA_OECMAKE:append = " -DBUILD_TESTING=ON"
 EXTRA_OECMAKE:append:class-target = " -DPYTHON_SOABI=${PYTHON_SOABI}"
 
 # XXX Without STAGING_DIR_HOST path included, rmw-implementation:do_configure() fails with:

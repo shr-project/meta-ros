@@ -1,0 +1,47 @@
+From 2c0e7c1a82e2ab759a4379e2f6fc8ace8f6831e7 Mon Sep 17 00:00:00 2001
+From: Martin Jansa <martin.jansa@lge.com>
+Date: Wed, 24 Jun 2020 04:01:07 -0700
+Subject: [PATCH] test: don't prefix test_resources_dir_name with
+ CMAKE_CURRENT_BINARY_DIR
+
+ERROR: rclcpp-2.0.0-1-r0 do_package: QA Issue: rclcpp: Files/directories were installed but not shipped in any package:
+  /jenkins
+  /jenkins/mjansa
+  /jenkins/mjansa/build
+  /jenkins/mjansa/build/ros
+  /jenkins/mjansa/build/ros/ros2-foxy-gatesgarth
+  /jenkins/mjansa/build/ros/ros2-foxy-gatesgarth/tmp-glibc
+  /jenkins/mjansa/build/ros/ros2-foxy-gatesgarth/tmp-glibc/work
+  /jenkins/mjansa/build/ros/ros2-foxy-gatesgarth/tmp-glibc/work/core2-64-oe-linux
+  /jenkins/mjansa/build/ros/ros2-foxy-gatesgarth/tmp-glibc/work/core2-64-oe-linux/rclcpp
+  /jenkins/mjansa/build/ros/ros2-foxy-gatesgarth/tmp-glibc/work/core2-64-oe-linux/rclcpp/2.0.0-1-r0
+  /jenkins/mjansa/build/ros/ros2-foxy-gatesgarth/tmp-glibc/work/core2-64-oe-linux/rclcpp/2.0.0-1-r0/build
+  /jenkins/mjansa/build/ros/ros2-foxy-gatesgarth/tmp-glibc/work/core2-64-oe-linux/rclcpp/2.0.0-1-r0/build/test
+  /jenkins/mjansa/build/ros/ros2-foxy-gatesgarth/tmp-glibc/work/core2-64-oe-linux/rclcpp/2.0.0-1-r0/build/test/resources
+  /jenkins/mjansa/build/ros/ros2-foxy-gatesgarth/tmp-glibc/work/core2-64-oe-linux/rclcpp/2.0.0-1-r0/build/test/resources/test_node
+  /jenkins/mjansa/build/ros/ros2-foxy-gatesgarth/tmp-glibc/work/core2-64-oe-linux/rclcpp/2.0.0-1-r0/build/test/resources/test_node/test_parameters.yaml
+Please set FILES such that these items are packaged. Alternatively if they are unneeded, avoid installing them or delete them within do_install.
+rclcpp: 15 installed and not shipped files. [installed-vs-shipped]
+ERROR: rclcpp-2.0.0-1-r0 do_package: Fatal QA errors found, failing task.
+ERROR: Logfile of failure stored in: /jenkins/mjansa/build/ros/ros2-foxy-gatesgarth/tmp-glibc/work/core2-64-oe-linux/rclcpp/2.0.0-1-r0/temp/log.do_package.59348
+NOTE: recipe rclcpp-2.0.0-1-r0: task do_package: Failed
+ERROR: Task (/jenkins/mjansa/build/ros/ros2-foxy-gatesgarth/meta-ros/meta-ros2-foxy/generated-recipes/rclcpp/rclcpp_2.0.0-1.bb:do_package) failed with exit code '1'
+
+Signed-off-by: Martin Jansa <martin.jansa@lge.com>
+---
+ CMakeLists.txt | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index 4562375..0e9cc3a 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -647,7 +647,7 @@ if(BUILD_TESTING)
+   # Install test resources
+   install(
+     DIRECTORY test/resources
+-    DESTINATION ${CMAKE_CURRENT_BINARY_DIR}/test)
++    DESTINATION test)
+ endif()
+ 
+ ament_package()

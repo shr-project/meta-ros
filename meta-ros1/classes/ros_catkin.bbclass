@@ -40,7 +40,7 @@ EXTRA_OECMAKE:prepend = "\
     ${EXTRA_OECMAKE_CATKIN} \
     -DCATKIN_BUILD_BINARY_PACKAGE=ON \
     -DSETUPTOOLS_DEB_LAYOUT=OFF \
-    -DCATKIN_ENABLE_TESTING=0 \
+    -DCATKIN_ENABLE_TESTING=1 \
     "
 
 # similar to what distutil3.bbclass does here:

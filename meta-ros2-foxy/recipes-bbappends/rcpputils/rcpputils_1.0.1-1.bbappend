@@ -1,0 +1,4 @@
+#DEPENDS += "gtest"
+
+export GTEST_DIR = "${STAGING_EXECPREFIXDIR}"
+#export GMOCK = "${STAGING_EXECPREFIXDIR}"
