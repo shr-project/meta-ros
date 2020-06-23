@@ -1,0 +1,56 @@
+From a5638622466327b08bce926100fc1c2d1183450a Mon Sep 17 00:00:00 2001
+From: Martin Jansa <martin.jansa@lge.com>
+Date: Tue, 23 Jun 2020 03:01:24 -0700
+Subject: [PATCH] debug
+
+Signed-off-by: Martin Jansa <martin.jansa@lge.com>
+---
+ src/error_handling.c | 21 +++++++++++++++++++++
+ 1 file changed, 21 insertions(+)
+
+diff --git a/src/error_handling.c b/src/error_handling.c
+index 868a501..b02d1b8 100644
+--- a/src/error_handling.c
++++ b/src/error_handling.c
+@@ -84,6 +84,25 @@ __same_string(const char * str1, const char * str2, size_t count)
+   return str1 == str2 || 0 == strncmp(str1, str2, count);
+ }
+ 
++void
++print_trace (void)
++{
++  void *array[10];
++  size_t size;
++  char **strings;
++  size_t i;
++
++  size = backtrace (array, 10);
++  strings = backtrace_symbols (array, size);
++
++  printf ("Obtained %zd stack frames.\n", size);
++
++  for (i = 0; i < size; i++)
++     printf ("%s\n", strings[i]);
++
++  free (strings);
++}
++
+ static
+ void
+ __format_overwriting_error_state_message(
+@@ -101,6 +120,7 @@ __format_overwriting_error_state_message(
+     char * offset = buffer;
+     size_t written = 0;
+ 
++    print_trace();
+     // write the first static part of the error message
+     written = __rcutils_copy_string(
+       offset, bytes_left,
+@@ -175,6 +195,7 @@ rcutils_set_error_state(
+ {
+   rcutils_error_state_t error_state;
+ 
++  print_trace();
+   if (NULL == error_string) {
+ #if RCUTILS_REPORT_ERROR_HANDLING_ERRORS
+     RCUTILS_SAFE_FWRITE_TO_STDERR(
