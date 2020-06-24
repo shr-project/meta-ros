@@ -6,5 +6,5 @@ ROS_DISTRO = "foxy"
 
 inherit ${ROS_DISTRO_TYPE}_distro
 
-ROS_TEST_DEPENDS ?= ""
-DEPENDS_append = " ${ROS_TEST_DEPENDS}"
+#ROS_TEST_DEPENDS ?= ""
+#DEPENDS_append = " ${ROS_TEST_DEPENDS}"
