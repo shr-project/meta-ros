@@ -24,4 +24,4 @@ ROS_BUILD_DEPENDS += " \
     rosidl-typesupport-fastrtps-c-native \
 "
 
-#inherit python3native
+inherit python3native
