@@ -1,6 +1,3 @@
-# Copyright (c) 2020-2021 LG Electronics, Inc.
+# Copyright (c) 2020 LG Electronics, Inc.
 
 EXTRA_OECMAKE += "-DSPDLOG_BUILD_SHARED=on"
-
-# Force to use gold just to prevent prelink from crashing due to bug in it
-CXXFLAGS_append = " -fuse-ld=gold"
