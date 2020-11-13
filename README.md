@@ -1,9 +1,9 @@
-# Branch `[gatesgarth]`
+# Branch `[hardknott]`
 
 As of Milestone 16 (2021-06-24), this branch can be used to build the releases
 current at the end of June 2021 of ROS 2 **dashing**, **eloquent**, **foxy**,
 **galactic**, and **rolling** and ROS 1 **melodic** and **noetic** with the
-**gatesgarth** OpenEmbedded release series.
+**hardknott** OpenEmbedded release series.
 
 Instructions for using `meta-ros` are
 [here](https://github.com/ros/meta-ros/wiki/OpenEmbedded-Build-Instructions).
