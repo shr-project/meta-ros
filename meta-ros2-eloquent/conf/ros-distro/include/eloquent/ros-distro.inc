@@ -49,7 +49,8 @@ ROS_WORLD_SKIP_GROUPS += "kobuki-ftdi"
 ROS_WORLD_SKIP_GROUPS += "openvdb-openexr"
 # recipes depending on gazebo, for which there is no OE recipe
 ROS_WORLD_SKIP_GROUPS += "gazebo"
-
+# not compatible with glibc-2.34 without easy fix as reported in https://github.com/ros2/demos/issues/530
+ROS_WORLD_SKIP_GROUPS += "pendulum-control"
 # recipes depending on something from meta-qt5 layer
 ROS_WORLD_SKIP_GROUPS += "${@bb.utils.contains('BBFILE_COLLECTIONS', 'qt5-layer', '', 'qt5', d)}"
 # recipes depending on something from meta-qt4 layer
@@ -71,6 +72,14 @@ ROS_WORLD_SKIP_GROUPS += " \
     lanelet2-io \
     lanelet2-traffic-rules \
 "
+
+# do_compile failures
+ROS_WORLD_SKIP_GROUPS += " \
+    lanelet2-core \
+"
+
+# Must use a _pn- override in this file to override the ROS_BUILD_TYPE of a generated recipe,
+# because we need to set this variable before the "inherit" line in the recipe is parsed,
 
 # Override settings from generated/superflore-ros-distro.inc here.
 
