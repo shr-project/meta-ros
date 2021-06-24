@@ -1,7 +1,7 @@
 # rolling/ros-distro.inc
 # General configuration settings that are dependent on ROS_DISTRO.
 #
-# Copyright (c) 2020 LG Electronics, Inc.
+# Copyright (c) 2020-2021 LG Electronics, Inc.
 
 ROS_DISTRO_CODENAME = "Rolling Ridley"
 
@@ -97,6 +97,9 @@ ROS_WORLD_SKIP_GROUPS += "sdformat"
 # recipes depending on gazebo, for which there is no OE recipe
 ROS_WORLD_SKIP_GROUPS += "gazebo"
 
+# not compatible with glibc-2.34 without easy fix as reported in https://github.com/ros2/demos/issues/530
+ROS_WORLD_SKIP_GROUPS += "pendulum-control"
+
 # recipes depending on libqglviewer (https://packages.debian.org/source/stretch/libqglviewer https://packages.debian.org/stretch/libqglviewer2-qt5)
 ROS_WORLD_SKIP_GROUPS += "libqglviewer"
 
@@ -144,6 +147,7 @@ ROS_WORLD_SKIP_GROUPS += " \
 
 # do_compile failures
 ROS_WORLD_SKIP_GROUPS += " \
+    lanelet2-core \
     qt-gui-cpp \
     self-test \
 "

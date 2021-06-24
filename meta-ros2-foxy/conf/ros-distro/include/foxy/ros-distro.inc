@@ -110,6 +110,9 @@ ROS_WORLD_SKIP_GROUPS += "${@bb.utils.contains('BBFILE_COLLECTIONS', 'ros1-layer
 # recipes depending on something from meta-qt5 layer
 ROS_WORLD_SKIP_GROUPS += "${@bb.utils.contains('BBFILE_COLLECTIONS', 'qt5-layer', '', 'qt5', d)}"
 
+# not compatible with glibc-2.34 without easy fix as reported in https://github.com/ros2/demos/issues/530
+ROS_WORLD_SKIP_GROUPS += "pendulum-control"
+
 # recipes depending on libqglviewer (https://packages.debian.org/source/stretch/libqglviewer https://packages.debian.org/stretch/libqglviewer2-qt5)
 ROS_WORLD_SKIP_GROUPS += "libqglviewer"
 
@@ -140,6 +143,7 @@ ROS_WORLD_SKIP_GROUPS += " \
 
 # do_compile failures
 ROS_WORLD_SKIP_GROUPS += " \
+    lanelet2-core \
     mrpt2 \
     qt-gui-cpp \
 "
