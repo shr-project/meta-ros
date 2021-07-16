@@ -228,11 +228,11 @@ ROS_WORLD_SKIP_GROUPS += "${@bb.utils.contains('BBFILE_COLLECTIONS', 'multimedia
 ROS_WORLD_SKIP_GROUPS += "${@bb.utils.contains('DISTRO_FEATURES', 'x11', '', 'x11', d)}"
 # recipes depending on 'opengl' in DISTRO_FEATURES
 ROS_WORLD_SKIP_GROUPS += "${@bb.utils.contains('DISTRO_FEATURES', 'opengl', '', 'opengl', d)}"
-# recipes depending on 'ffmpeg' which is restricted by 'commercial' LICENSE_FLAG
+# recipes depending on 'ffmpeg' which is restricted by 'commercial' LICENSE:FLAG
 ROS_WORLD_SKIP_GROUPS += "${@bb.utils.contains_any('LICENSE_FLAGS_WHITELIST', ['commercial', 'ffmpeg', 'commercial_ffmpeg'], '', 'ffmpeg', d)}"
-# recipes depending on 'x264' (ffmpeg does depend on it by default as well) which is restricted by 'commercial' LICENSE_FLAG
+# recipes depending on 'x264' (ffmpeg does depend on it by default as well) which is restricted by 'commercial' LICENSE:FLAG
 ROS_WORLD_SKIP_GROUPS += "${@bb.utils.contains_any('LICENSE_FLAGS_WHITELIST', ['commercial', 'x264', 'commercial_x264'], '', 'x264', d)}"
-# recipes depending on 'gstreamer1.0-plugins-ugly' which is restricted by 'commercial' LICENSE_FLAG
+# recipes depending on 'gstreamer1.0-plugins-ugly' which is restricted by 'commercial' LICENSE:FLAG
 ROS_WORLD_SKIP_GROUPS += "${@bb.utils.contains_any('LICENSE_FLAGS_WHITELIST', ['commercial', 'gstreamer1.0-plugins-ugly', 'commercial_gstreamer1.0-plugins-ugly'], '', 'gst-ugly', d)}"
 # recipes depending on vlc from meta-multimedia layer which depends on ffmpeg which has commercial LICENSE_FLAGS restriction
 ROS_WORLD_SKIP_GROUPS += "${@bb.utils.contains_any('LICENSE_FLAGS_WHITELIST', ['commercial', 'vlc', 'commercial_vlc'], '', 'vlc', d)}"
@@ -246,9 +246,9 @@ ROS_WORLD_SKIP_GROUPS += "${@bb.utils.contains('BBFILE_COLLECTIONS', 'qt5-layer'
 # Must use a _pn- override in this file to override the ROS_BUILD_TYPE of a generated recipe,
 # because we need to set this variable before the "inherit" line in the recipe is parsed,
 # and having it in a .bbappend sets it too late.
-ROS_BUILD_TYPE_pn-python-orocos-kdl = "catkin"
+ROS_BUILD_TYPE:pn-python-orocos-kdl = "catkin"
 
 # Otherwise it will use cmake as specified in
 # https://github.com/mavlink/mavlink-gbp-release/blob/release/melodic/mavlink/2019.11.11-1/package.xml#L29
 # but that doesn't respect the prefix set in meta-ros-common/classes/ros_opt_prefix.bbclass
-ROS_BUILD_TYPE_pn-mavlink = "catkin"
+ROS_BUILD_TYPE:pn-mavlink = "catkin"

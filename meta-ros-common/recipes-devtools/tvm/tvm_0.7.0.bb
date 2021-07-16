@@ -27,7 +27,7 @@ inherit cmake
 # ERROR: tvm-0.7.0-r0 do_package_qa: QA Issue:
 # -dev package contains non-symlink .so: tvm-dev path '/work/qemux86-webos-linux/tvm/0.7.0-r0/packages-split/tvm-dev/usr/lib/libtvm.so'
 # -dev package contains non-symlink .so: tvm-dev path '/work/qemux86-webos-linux/tvm/0.7.0-r0/packages-split/tvm-dev/usr/lib/libtvm_runtime.so' [dev-elf]
-FILES_SOLIBSDEV = ""
-FILES_${PN} += " \
+FILES:SOLIBSDEV = ""
+FILES:${PN} += " \
     ${libdir}/lib*${SOLIBSDEV} \
 "

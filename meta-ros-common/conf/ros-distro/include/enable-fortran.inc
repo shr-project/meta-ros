@@ -4,4 +4,4 @@
 # Enabling FORTRAN
 # Note this is not officially supported by OpenEmbedded.
 FORTRAN_forcevariable = "${@bb.utils.contains('ROS_WORLD_SKIP_GROUPS', 'fortran', '', ',fortran', d)}"
-RUNTIMETARGET_append_pn-gcc-runtime = "${@bb.utils.contains('ROS_WORLD_SKIP_GROUPS', 'fortran', '', ' libquadmath', d)}"
+RUNTIMETARGET:append:pn-gcc-runtime = "${@bb.utils.contains('ROS_WORLD_SKIP_GROUPS', 'fortran', '', ' libquadmath', d)}"

@@ -46,7 +46,7 @@ ROS_SUPERFLORE_GENERATED_BUILDTOOLS += " \
 "
 
 # this needs google-benchmark-vendor-native but we probably don't need native version
-ROS_SUPERFLORE_GENERATED_BUILDTOOLS_remove = "ament-cmake-google-benchmark-native"
+ROS_SUPERFLORE_GENERATED_BUILDTOOLS:remove = "ament-cmake-google-benchmark-native"
 
 # alternative not yet supported implementation for fastrtps
 ROS_WORLD_SKIP_GROUPS += "connext"
@@ -75,9 +75,9 @@ ROS_WORLD_SKIP_GROUPS += "libspnav"
 ROS_WORLD_SKIP_GROUPS += "${@bb.utils.contains('DISTRO_FEATURES', 'x11', '', 'x11', d)}"
 # recipes depending on 'opengl' in DISTRO_FEATURES
 ROS_WORLD_SKIP_GROUPS += "${@bb.utils.contains('DISTRO_FEATURES', 'opengl', '', 'opengl', d)}"
-# recipes depending on 'ffmpeg' which is restricted by 'commercial' LICENSE_FLAG
+# recipes depending on 'ffmpeg' which is restricted by 'commercial' LICENSE:FLAG
 ROS_WORLD_SKIP_GROUPS += "${@bb.utils.contains_any('LICENSE_FLAGS_WHITELIST', ['commercial', 'ffmpeg', 'commercial_ffmpeg'], '', 'ffmpeg', d)}"
-# recipes depending on 'x264' (ffmpeg does depend on it by default as well) which is restricted by 'commercial' LICENSE_FLAG
+# recipes depending on 'x264' (ffmpeg does depend on it by default as well) which is restricted by 'commercial' LICENSE:FLAG
 ROS_WORLD_SKIP_GROUPS += "${@bb.utils.contains_any('LICENSE_FLAGS_WHITELIST', ['commercial', 'x264', 'commercial_x264'], '', 'x264', d)}"
 # There is recipe for glfw in meta-oe in dunfell, but it still needs x11 in DISTRO_FEATURES
 # use that in dunfell and blacklist explicitly in older releases
@@ -130,9 +130,9 @@ ROS_WORLD_SKIP_GROUPS += " \
 # and having it in a .bbappend sets it too late.
 # We want ament_cmake instead of plain cmake for ros-workspace:
 # https://raw.github.com/ros2-gbp/ros_workspace-release/release/rolling/ros_workspace/1.0.1-2/package.xml
-ROS_BUILD_TYPE_pn-ros-workspace = "ament_cmake"
+ROS_BUILD_TYPE:pn-ros-workspace = "ament_cmake"
 # And also for rmf-task, otherwise many dependencies won't be detected
-ROS_BUILD_TYPE_pn-rmf-task = "ament_cmake"
+ROS_BUILD_TYPE:pn-rmf-task = "ament_cmake"
 
 # Used by generated-recipes/cyclonedds/cyclonedds_0.6.0-3.bb
 ROS_UNRESOLVED_DEP-java-native = ""

@@ -63,9 +63,9 @@ ROS_WORLD_SKIP_GROUPS += "${@bb.utils.contains('BBFILE_COLLECTIONS', 'qt4-layer'
 ROS_WORLD_SKIP_GROUPS += "${@bb.utils.contains('DISTRO_FEATURES', 'x11', '', 'x11', d)}"
 # recipes depending on 'opengl' in DISTRO_FEATURES
 ROS_WORLD_SKIP_GROUPS += "${@bb.utils.contains('DISTRO_FEATURES', 'opengl', '', 'opengl', d)}"
-# recipes depending on 'ffmpeg' which is restricted by 'commercial' LICENSE_FLAG
+# recipes depending on 'ffmpeg' which is restricted by 'commercial' LICENSE:FLAG
 ROS_WORLD_SKIP_GROUPS += "${@bb.utils.contains_any('LICENSE_FLAGS_WHITELIST', ['commercial', 'ffmpeg', 'commercial_ffmpeg'], '', 'ffmpeg', d)}"
-# recipes depending on 'x264' (ffmpeg does depend on it by default as well) which is restricted by 'commercial' LICENSE_FLAG
+# recipes depending on 'x264' (ffmpeg does depend on it by default as well) which is restricted by 'commercial' LICENSE:FLAG
 ROS_WORLD_SKIP_GROUPS += "${@bb.utils.contains_any('LICENSE_FLAGS_WHITELIST', ['commercial', 'x264', 'commercial_x264'], '', 'x264', d)}"
 
 # recipes depending on python*-pyqt5 from meta-qt5 layer
@@ -110,7 +110,7 @@ ROS_SUPERFLORE_GENERATED_BUILDTOOLS += " \
 # and having it in a .bbappend sets it too late.
 # We want ament_cmake instead of plain cmake for ros-workspace:
 # https://raw.github.com/ros2-gbp/ros_workspace-release/release/dashing/ros_workspace/0.7.2-1/package.xml
-ROS_BUILD_TYPE_pn-ros-workspace = "ament_cmake"
+ROS_BUILD_TYPE:pn-ros-workspace = "ament_cmake"
 
 # Submitted with https://github.com/ros/rosdistro/pull/29534
 ROS_UNRESOLVED_DEP-qttools5-dev-tools = "qttools"

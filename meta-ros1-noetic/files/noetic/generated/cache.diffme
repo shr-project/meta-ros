@@ -6711,7 +6711,7 @@ version: noetic-devel
 status: maintained
 }
 -----
-pincher_arm: {
+pincher:arm: {
 doc: {
 type: git,
 url: 'https://github.com/fictionlab/pincher_arm.git',
@@ -6719,11 +6719,11 @@ version: master
 },
 release: {
 packages: [pincher_arm,
-pincher_arm_bringup,
-pincher_arm_description,
-pincher_arm_ikfast_plugin,
-pincher_arm_moveit_config,
-pincher_arm_moveit_demos],
+pincher:arm_bringup,
+pincher:arm_description,
+pincher:arm_ikfast_plugin,
+pincher:arm_moveit_config,
+pincher:arm_moveit_demos],
 tags: {
 release: 'release/noetic/{package}/{version}'
 },
@@ -6975,11 +6975,11 @@ version: kinetic-devel
 release: {
 packages: [joint_trajectory_action_tools,
 joint_trajectory_generator,
-pr2_arm_move_ik,
+pr2:arm_move_ik,
 pr2_common_action_msgs,
 pr2_common_actions,
 pr2_tilt_laser_interface,
-pr2_tuck_arms_action],
+pr2_tuck:arms_action],
 tags: {
 release: 'release/noetic/{package}/{version}'
 },
@@ -33197,10 +33197,10 @@ pilz_utils: <?xml version="1.0" ?>
 <test_depend>code_coverage</test_depend>
 </package>
 -----
-pincher_arm: <?xml version="1.0" ?>
+pincher:arm: <?xml version="1.0" ?>
 <package format="2">
 <name>pincher_arm</name>
-<description>The pincher_arm metapackage.</description>
+<description>The pincher:arm metapackage.</description>
 <author email="blazej@fictionlab.pl">Błażej Sowa</author>
 <maintainer email="support@fictionlab.pl">Fictionlab</maintainer>
 <license>BSD</license>
@@ -33215,7 +33215,7 @@ pincher_arm: <?xml version="1.0" ?>
 </export>
 </package>
 -----
-pincher_arm_bringup: <?xml version="1.0" ?>
+pincher:arm_bringup: <?xml version="1.0" ?>
 <package format="2">
 <name>pincher_arm_bringup</name>
 <description>Launch files for starting PhantomX Pincher arm drivers.</description>
@@ -33235,7 +33235,7 @@ pincher_arm_bringup: <?xml version="1.0" ?>
 <exec_depend>pincher_arm_description</exec_depend>
 </package>
 -----
-pincher_arm_description: <?xml version="1.0" ?>
+pincher:arm_description: <?xml version="1.0" ?>
 <package format="2">
 <name>pincher_arm_description</name>
 <description>URDF Description package for PhantomX Pincher arm</description>
@@ -33248,7 +33248,7 @@ pincher_arm_description: <?xml version="1.0" ?>
 <buildtool_depend>catkin</buildtool_depend>
 </package>
 -----
-pincher_arm_ikfast_plugin: <?xml version="1.0" ?>
+pincher:arm_ikfast_plugin: <?xml version="1.0" ?>
 <package format="2">
 <name>pincher_arm_ikfast_plugin</name>
 <description>IKFast plugin for the PhantomX Pincher arm</description>
@@ -33274,10 +33274,10 @@ pincher_arm_ikfast_plugin: <?xml version="1.0" ?>
 </export>
 </package>
 -----
-pincher_arm_moveit_config: <?xml version="1.0" ?>
+pincher:arm_moveit_config: <?xml version="1.0" ?>
 <package>
 <name>pincher_arm_moveit_config</name>
-<description>An automatically generated package with all the configuration and launch files for using the pincher_arm with the MoveIt! Motion Planning Framework</description>
+<description>An automatically generated package with all the configuration and launch files for using the pincher:arm with the MoveIt! Motion Planning Framework</description>
 <author email="blazej@turtlerover.com">Błażej Sowa</author>
 <maintainer email="support@fictionlab.pl">Fictionlab</maintainer>
 <license>BSD</license>
@@ -33299,7 +33299,7 @@ pincher_arm_moveit_config: <?xml version="1.0" ?>
 <run_depend>pincher_arm_description</run_depend>
 </package>
 -----
-pincher_arm_moveit_demos: <?xml version="1.0" ?>
+pincher:arm_moveit_demos: <?xml version="1.0" ?>
 <package format="2">
 <name>pincher_arm_moveit_demos</name>
 <description>Moveit demos for the PhantomX Pincher arm.</description>
@@ -33839,7 +33839,7 @@ pr2_apps: <?xml version="1.0" ?>
 </export>
 </package>
 -----
-pr2_arm_kinematics: <?xml version="1.0" ?>
+pr2:arm_kinematics: <?xml version="1.0" ?>
 <package>
 <name>pr2_arm_kinematics</name>
 <description>This package provides a kinematics implementation for the PR2 robot. It can be used to compute forward and inverse kinematics.</description>
@@ -33868,12 +33868,12 @@ pr2_arm_kinematics: <?xml version="1.0" ?>
 <run_depend>pluginlib</run_depend>
 <run_depend>moveit_msgs</run_depend>
 <export>
-<cpp cflags="-I${prefix}/include" lflags="-Wl,-rpath,${prefix}/lib -L${prefix}/lib -lpr2_arm_kinematics_lib"/>
+<cpp cflags="-I${prefix}/include" lflags="-Wl,-rpath,${prefix}/lib -L${prefix}/lib -lpr2:arm_kinematics_lib"/>
 <moveit_core plugin="${prefix}/kinematics_plugins.xml"/>
 </export>
 </package>
 -----
-pr2_arm_move_ik: <?xml version="1.0" ?>
+pr2:arm_move_ik: <?xml version="1.0" ?>
 <package>
 <name>pr2_arm_move_ik</name>
 <description>Move the pr2 arm using inverse kinematics</description>
@@ -34838,10 +34838,10 @@ given a set of desired parameters for both the laser driver and tilting platform
 <run_depend>message_runtime</run_depend>
 </package>
 -----
-pr2_tuck_arms_action: <?xml version="1.0" ?>
+pr2_tuck:arms_action: <?xml version="1.0" ?>
 <package>
 <name>pr2_tuck_arms_action</name>
-<description>The pr2_tuck_arms_action package</description>
+<description>The pr2_tuck:arms_action package</description>
 <maintainer email="ros-orphaned-packages@googlegroups.com">ROS Orphaned Package Maintainers</maintainer>
 <license>BSD</license>
 <url type="website">http://wiki.ros.org/pr2_tuck_arms_action</url>
@@ -45015,7 +45015,7 @@ ur_client_library: <?xml version="1.0" ?>
 <author>Lea Steffen</author>
 <author>Tristan Schnell</author>
 <maintainer email="exner@fzi.de">Felix Exner</maintainer>
-<license file="LICENSE_apache_2_0">Apache-2.0</license>
+<license file="LICENSE:apache_2_0">Apache-2.0</license>
 <license file="include/ur_client_library/queue/LICENSE.md">BSD-2-Clause</license>
 <license file="include/ur_client_library/queue/atomicops.h">Zlib</license>
 <license file="tests/resources/dockerursim/Dockerfile">MIT</license>
