@@ -61,7 +61,7 @@ MCF="${OE_DISTRO}-${ROS_DISTRO}-${OE_RELEASE}"
 if [ -z "${MACHINE}" ] || [ -z "${MACHINES}" ] ; then
     export MACHINE="qemux86-64"
     export MACHINES="${MACHINE} raspberrypi4-64" # consider adding raspberrypi4 qemux86 qemuarm qemuarm64"
-    [ "${OE_DISTRO}" = "webos" ] && MACHINE="qemux86" && MACHINES="${MACHINE} raspberrypi4"
+    [ "${OE_DISTRO}" = "webos" ] && MACHINE="qemux86-64" && MACHINES="${MACHINE} raspberrypi4-64"
 fi
 
 [ -z "${IMAGES}" ] && [ -z "${TARGETS}" ] && export IMAGES="world"
